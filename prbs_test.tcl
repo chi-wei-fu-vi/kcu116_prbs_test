@@ -171,3 +171,11 @@ proc help_prbs_test {} {
   puts "serial_loopback"
   puts "parallel_loopback"
 }
+proc work_settings {} {
+  global vio_regs_offset
+  global offset
+  set offset $vio_regs_offset
+  txpostcursor 10
+  txprecursor 10
+  rxlpmen 0
+}
