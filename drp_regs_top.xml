@@ -1,0 +1,7 @@
+<vi_registers>
+  <a name="top" base="30'h11284000" size="30'h00000">
+      <aa name="ch"   base="14'h400"    size="14'h400" src="gtye_channel_regs.xml" clk="1" etc="doc_only"/>
+      <aa name="cm"   base="14'h0"  size="14'h100" src="gtye_common_regs.xml" clk="1" etc="doc_only"/>
+      <aa name="vio"   base="14'h800"  size="14'h400" src="vio_regs.xml" clk="1"/>
+  </a>
+</vi_registers>

@@ -1,0 +1,12 @@
+gentcl:
+	sed 's+gtylrunder10           = 0,+gtylrunder10           = 1,+' ~/bin/vivado_gty_es.py > ~/bin/tmp.py
+	chmod u+x ~/bin/tmp.py
+	tmp.py -xml drp_regs_top.xml -case prescale_scan -tcl prescale_scan.tcl -jtag -json ber*_d.json -debug
+	tmp.py -xml drp_regs_top.xml -case ber_dfe_scan -tcl ber_dfe_scan.tcl -jtag -json ber*_d.json -debug
+	tmp.py -xml drp_regs_top.xml -case matrix_scan -tcl matrix_scan.tcl -jtag -json ber*_d.json -debug
+prescale_scan:
+	tmp.py -xml drp_regs_top.xml -case prescale_scan -tcl prescale_scan.tcl -jtag -json ber*_d.json -debug > prescale_scan.json
+ber_dfe_scan:
+	tmp.py -xml drp_regs_top.xml -case ber_dfe_scan -tcl ber_dfe_scan.tcl -jtag -json ber*_d.json -debug > ber_dfe_scan.json
+matrix_scan:
+	tmp.py -xml drp_regs_top.xml -case matrix_scan -tcl matrix_scan.tcl -jtag -json ber*_d.json -debug > matrix_scan.json
