@@ -1,7 +1,10 @@
 set common_offset [expr 0x44A10000]
 set channel_offset [expr 0x44A10000+(1<<12)]
 set vio_regs_offset [expr 0x44A10000+(1<<12)*2]
-set offset 0
+set offset $channel_offset
+proc color {foreground text} {
+  return [exec tput setaf $foreground]$text[exec tput sgr0]
+}
 proc program_bit_file {} {
   open_hw
   connect_hw_server
@@ -22,25 +25,27 @@ proc program_bit_file {} {
 }
 proc gtye_common_api {} {
   global common_offset
+  global channel_offset
   global offset
   source ~/bin/gtye_common_api.tcl
   set offset $common_offset
   dump_gtye_common_api
+  set offset $channel_offset
 }
 proc gtye_channel_api {} {
   global channel_offset
   global offset
   source ~/bin/gtye_channel_api.tcl
-  set channel_offset [expr 0x44A10000+(1<<12)]
-  set offset $channel_offset
   dump_gtye_channel_api
 }
 proc vio_regs_api {} {
   global vio_regs_offset
+  global channel_offset
   global offset
   source ~/bin/vio_regs_api.tcl
   set offset $vio_regs_offset
   dump_vio_regs_api
+  set offset $channel_offset
 }
 proc gty_vio_api {} {
   source ~/bin/gty_vio_api.tcl
@@ -64,27 +69,29 @@ proc external_loopback { {testpattern 5} } {
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "PRBS error count reset: [prbs_reset]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   puts "prbs_enable $testpattern: [prbs_enable $testpattern]"
+  puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "prbs_forceerr: [prbs_forceerr]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 4 prbs_forceerr]: [prbs_forceerr]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   set offset $vio_regs_offset
   puts "init_done: [init_done]"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "prbs_disable: [prbs_disable]"
+  puts "++++++++++++++++++++++++++++++++++++++++++++++++"
 }
 proc serial_loopback { {testpattern 5} } {
   global offset
@@ -95,27 +102,29 @@ proc serial_loopback { {testpattern 5} } {
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "PRBS error count reset: [prbs_reset]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   puts "prbs_enable $testpattern: [prbs_enable $testpattern]"
+  puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "prbs_forceerr: [prbs_forceerr]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 4 prbs_forceerr]: [prbs_forceerr]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   set offset $vio_regs_offset
   puts "init_done: [init_done]"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "prbs_disable: [prbs_disable]"
+  puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "near_end_pma_loopback_enable: [near_end_pma_loopback_disable]"
 }
 proc parallel_loopback { {testpattern 5} } {
@@ -127,27 +136,29 @@ proc parallel_loopback { {testpattern 5} } {
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "PRBS error count reset: [prbs_reset]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   puts "prbs_enable $testpattern: [prbs_enable $testpattern]"
+  puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "prbs_forceerr: [prbs_forceerr]"
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 4 prbs_forceerr]: [prbs_forceerr]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
-  puts "Error count : [prbs_error_cnt]"
+  puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   set offset $vio_regs_offset
   puts "init_done: [init_done]"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "prbs_disable: [prbs_disable]"
+  puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "near_end_pcs_loopback_enable: [near_end_pcs_loopback_disable]"
 }
 proc help_prbs_test {} {
@@ -173,9 +184,14 @@ proc help_prbs_test {} {
 }
 proc work_settings {} {
   global vio_regs_offset
+  global channel_offset
   global offset
   set offset $vio_regs_offset
   txpostcursor 10
   txprecursor 10
   rxlpmen 0
+  set offset $channel_offset
 }
+program_bit_file
+prbs_test_ini
+work_settings
