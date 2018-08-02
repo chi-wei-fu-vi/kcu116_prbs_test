@@ -75,6 +75,7 @@ proc external_loopback { {testpattern 5} } {
   puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   puts "prbs_enable $testpattern: [prbs_enable $testpattern]"
+  set offset $vio_regs_offset
   puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
@@ -93,14 +94,15 @@ proc external_loopback { {testpattern 5} } {
   puts "rxprbserr: [rxprbserr]"
   puts "prbs_disable: [prbs_disable]"
   puts "++++++++++++++++++++++++++++++++++++++++++++++++"
+  set offset $vio_regs_offset
   puts "enable reset: [disable_reset 0]"
   puts "init_done: [init_done]"
 }
 proc serial_loopback { {testpattern 5} } {
   global offset
   global vio_regs_offset
-  set offset $vio_regs_offset
   puts "near_end_pma_loopback_enable: [near_end_pma_loopback_enable]"
+  set offset $vio_regs_offset
   puts "init_done: [init_done]"
   puts "disable reset: [disable_reset 1]"
   puts "rxprbslocked: [rxprbslocked]"
@@ -111,6 +113,7 @@ proc serial_loopback { {testpattern 5} } {
   puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   puts "prbs_enable $testpattern: [prbs_enable $testpattern]"
+  set offset $vio_regs_offset
   puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
@@ -137,8 +140,8 @@ proc serial_loopback { {testpattern 5} } {
 proc parallel_loopback { {testpattern 5} } {
   global offset
   global vio_regs_offset
-  set offset $vio_regs_offset
   puts "near_end_pcs_loopback_enable: [near_end_pcs_loopback_enable]"
+  set offset $vio_regs_offset
   puts "init_done: [init_done]"
   puts "disable reset: [disable_reset 1]"
   puts "rxprbslocked: [rxprbslocked]"
@@ -149,6 +152,7 @@ proc parallel_loopback { {testpattern 5} } {
   puts "[color 1 {Error count}] : [prbs_error_cnt]"
   exec sleep 5
   puts "prbs_enable $testpattern: [prbs_enable $testpattern]"
+  set offset $vio_regs_offset
   puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
