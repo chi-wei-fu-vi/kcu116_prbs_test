@@ -44,13 +44,13 @@
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="3"/>
-    <Option Name="WTModelSimExportSim" Val="3"/>
-    <Option Name="WTQuestaExportSim" Val="3"/>
-    <Option Name="WTIesExportSim" Val="3"/>
-    <Option Name="WTVcsExportSim" Val="3"/>
-    <Option Name="WTRivieraExportSim" Val="3"/>
-    <Option Name="WTActivehdlExportSim" Val="3"/>
+    <Option Name="WTXSimExportSim" Val="5"/>
+    <Option Name="WTModelSimExportSim" Val="5"/>
+    <Option Name="WTQuestaExportSim" Val="5"/>
+    <Option Name="WTIesExportSim" Val="5"/>
+    <Option Name="WTVcsExportSim" Val="5"/>
+    <Option Name="WTRivieraExportSim" Val="5"/>
+    <Option Name="WTActivehdlExportSim" Val="5"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -85,23 +85,23 @@
         <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_gty_64_156_28G_top_0_0/drp_example_gty_64_156_28G_top_0_0.xci">
           <Proxy FileSetName="drp_example_gty_64_156_28G_top_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_vio_0_0/drp_example_vio_0_0.xci">
-          <Proxy FileSetName="drp_example_vio_0_0"/>
-        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_jtag_axi_0_0/drp_example_jtag_axi_0_0.xci">
           <Proxy FileSetName="drp_example_jtag_axi_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_proc_sys_reset_0_0/drp_example_proc_sys_reset_0_0.xci">
-          <Proxy FileSetName="drp_example_proc_sys_reset_0_0"/>
+        <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_xbar_0/drp_example_xbar_0.xci">
+          <Proxy FileSetName="drp_example_xbar_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_system_ila_1_0/drp_example_system_ila_1_0.xci">
-          <Proxy FileSetName="drp_example_system_ila_1_0"/>
+        <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_vio_0_0/drp_example_vio_0_0.xci">
+          <Proxy FileSetName="drp_example_vio_0_0"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_util_vector_logic_0_0/drp_example_util_vector_logic_0_0.xci">
           <Proxy FileSetName="drp_example_util_vector_logic_0_0"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_xbar_0/drp_example_xbar_0.xci">
-          <Proxy FileSetName="drp_example_xbar_0"/>
+        <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_system_ila_1_0/drp_example_system_ila_1_0.xci">
+          <Proxy FileSetName="drp_example_system_ila_1_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="drp_example.bd" FileRelPathName="ip/drp_example_proc_sys_reset_0_0/drp_example_proc_sys_reset_0_0.xci">
+          <Proxy FileSetName="drp_example_proc_sys_reset_0_0"/>
         </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/drp_example/hdl/drp_example_wrapper.v">
@@ -350,7 +350,9 @@
     </Run>
     <Run Id="drp_example_gty_64_156_28G_top_0_0_synth_1" Type="Ft3:Synth" SrcSet="drp_example_gty_64_156_28G_top_0_0" Part="xcku5p-ffvb676-2-e" ConstrsSet="drp_example_gty_64_156_28G_top_0_0" Description="Vivado Synthesis Defaults" WriteIncrSynthDcp="false" Dir="$PRUNDIR/drp_example_gty_64_156_28G_top_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
@@ -552,7 +554,9 @@
     </Run>
     <Run Id="drp_example_gty_64_156_28G_top_0_0_impl_1" Type="Ft2:EntireDesign" Part="xcku5p-ffvb676-2-e" ConstrsSet="drp_example_gty_64_156_28G_top_0_0" Description="Default settings for Implementation." WriteIncrSynthDcp="false" SynthRun="drp_example_gty_64_156_28G_top_0_0_synth_1" IncludeInArchive="false">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>

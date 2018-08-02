@@ -66,6 +66,7 @@ proc external_loopback { {testpattern 5} } {
   global vio_regs_offset
   set offset $vio_regs_offset
   puts "init_done: [init_done]"
+  puts "disable reset: [disable_reset 1]"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "PRBS error count reset: [prbs_reset]"
@@ -92,6 +93,8 @@ proc external_loopback { {testpattern 5} } {
   puts "rxprbserr: [rxprbserr]"
   puts "prbs_disable: [prbs_disable]"
   puts "++++++++++++++++++++++++++++++++++++++++++++++++"
+  puts "enable reset: [disable_reset 0]"
+  puts "init_done: [init_done]"
 }
 proc serial_loopback { {testpattern 5} } {
   global offset
@@ -99,6 +102,7 @@ proc serial_loopback { {testpattern 5} } {
   set offset $vio_regs_offset
   puts "near_end_pma_loopback_enable: [near_end_pma_loopback_enable]"
   puts "init_done: [init_done]"
+  puts "disable reset: [disable_reset 1]"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "PRBS error count reset: [prbs_reset]"
@@ -126,6 +130,9 @@ proc serial_loopback { {testpattern 5} } {
   puts "prbs_disable: [prbs_disable]"
   puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "near_end_pma_loopback_enable: [near_end_pma_loopback_disable]"
+  set offset $vio_regs_offset
+  puts "enable reset: [disable_reset 0]"
+  puts "init_done: [init_done]"
 }
 proc parallel_loopback { {testpattern 5} } {
   global offset
@@ -133,6 +140,7 @@ proc parallel_loopback { {testpattern 5} } {
   set offset $vio_regs_offset
   puts "near_end_pcs_loopback_enable: [near_end_pcs_loopback_enable]"
   puts "init_done: [init_done]"
+  puts "disable reset: [disable_reset 1]"
   puts "rxprbslocked: [rxprbslocked]"
   puts "rxprbserr: [rxprbserr]"
   puts "PRBS error count reset: [prbs_reset]"
@@ -160,6 +168,9 @@ proc parallel_loopback { {testpattern 5} } {
   puts "prbs_disable: [prbs_disable]"
   puts "++++++++++++++++++++++++++++++++++++++++++++++++"
   puts "near_end_pcs_loopback_enable: [near_end_pcs_loopback_disable]"
+  set offset $vio_regs_offset
+  puts "enable reset: [disable_reset 0]"
+  puts "init_done: [init_done]"
 }
 proc help_prbs_test {} {
   puts "program_bit_file"
@@ -195,3 +206,7 @@ proc work_settings {} {
 program_bit_file
 prbs_test_ini
 work_settings
+set offset $vio_regs_offset
+reset_all 1
+reset_all 0
+set offset $channel_offset
